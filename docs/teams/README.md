@@ -75,3 +75,30 @@ Tài liệu này cung cấp thông tin chi tiết về các WebSocket API liên 
 - **Command**: `teams/kick_member`
 - **Mô tả**: Đuổi thành viên ra khỏi team (leader/co-leader)
 - **Yêu cầu**: User ID của thành viên cần kick
+
+### 5. Team Close Management (Quản lý team đóng - CLOSED teams)
+
+#### [Accept Join Requests](./TeamClose/Accept-join-requests.md)
+- **Command**: `teams/join_request/accepts`
+- **Mô tả**: Chấp nhận nhiều yêu cầu tham gia team cùng lúc (leader/co-leader)
+- **Yêu cầu**: Danh sách request IDs
+
+#### [Reject Join Request](./TeamClose/Reject-join-request.md)
+- **Command**: `teams/join_request/reject`
+- **Mô tả**: Từ chối yêu cầu tham gia team (leader/co-leader)
+- **Yêu cầu**: Request ID
+
+#### [Cancel Join Request](./TeamClose/Cancel-join-request.md)
+- **Command**: `teams/join_request/cancel`
+- **Mô tả**: Hủy yêu cầu tham gia team của chính mình
+- **Yêu cầu**: Request ID
+
+#### [Get My Pending Requests](./TeamClose/Get-my-pending-requests.md)
+- **Command**: `teams/join_request/mine`
+- **Mô tả**: Lấy danh sách yêu cầu tham gia team đang chờ của user
+- **Yêu cầu**: Không cần dữ liệu đầu vào
+
+#### [Get Team Pending Requests](./TeamClose/Get-team-pending-requests.md)
+- **Command**: `teams/join_request`
+- **Mô tả**: Lấy danh sách yêu cầu tham gia team đang chờ của một team (leader/co-leader)
+- **Yêu cầu**: Team ID
