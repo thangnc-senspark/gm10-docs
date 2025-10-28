@@ -4,7 +4,7 @@
 Handler `CANCEL_JOIN_REQUEST` cho phép người dùng hủy yêu cầu tham gia team mà họ đã gửi trước đó. Yêu cầu sẽ được đánh dấu là đã hủy và không thể được leader xử lý nữa.
 
 ## Thông tin Handler
-- **Command**: `teams/request_join/cancel`
+- **Command**: `teams/join_request/cancel`
 - **Yêu cầu xác thực**: Có (BaseAuthHandler)
 - **Method**: WebSocket
 - **Quyền hạn**: Chỉ người gửi yêu cầu mới có thể hủy
@@ -15,7 +15,7 @@ Handler `CANCEL_JOIN_REQUEST` cho phép người dùng hủy yêu cầu tham gia
 ```json
 {
   "rid": {
-    "cmd": "teams/request_join/cancel",
+    "cmd": "teams/join_request/cancel",
     "rid": -1
   },
   "data": "{
@@ -28,7 +28,7 @@ Handler `CANCEL_JOIN_REQUEST` cho phép người dùng hủy yêu cầu tham gia
 
 | Trường | Kiểu | Bắt buộc | Mô tả | Ràng buộc |
 |--------|------|----------|-------|-----------|
-| `requestId` | String | Có | Hash ID của yêu cầu tham gia cần hủy | ID đã được encode |
+| `requestId` | String | Có | ID của yêu cầu tham gia cần hủy | |
 
 ## Response Data
 
@@ -36,7 +36,7 @@ Handler `CANCEL_JOIN_REQUEST` cho phép người dùng hủy yêu cầu tham gia
 ```json
 {
   "rid": {
-    "cmd": "teams/request_join/cancel",
+    "cmd": "teams/join_request/cancel",
     "rid": -1
   },
   "data": "{
