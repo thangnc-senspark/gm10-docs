@@ -18,27 +18,20 @@ Client Device ←→ WebSocket ←→ GM10 Server ←→ Log Event Manager
 
 ## API Commands
 
-### 1. Device Registration APIs
 
-#### [1.1 Register Device](./Register-Device.md)
-**Command:** `log/register_device`
+### 1. Log Event APIs
 
-Đăng ký device để có thể gửi log events.
-
-
-#### 1.2 Get Registered Devices
-**Command:** `log/get_devices`
-
-Lấy danh sách tất cả devices đã đăng ký.
-
-### 2. Log Event APIs
-
-#### [2.1 Send Log Event](Send-Log.md)
+#### [2.1 Send Log Event (WebSocket)](Send-Log.md)
 **Command:** `log/event`
 
-Gửi log event từ device đã đăng ký.
+Gửi log event từ device đã đăng ký qua WebSocket connection.
 
-#### 2.2 Get Log Data
+#### [2.2 Send Log Event (HTTP)](Send-Log-Event-HTTP.md)
+**Endpoint:** `POST /api/log/send-event`
+
+Gửi log event trực tiếp qua HTTP API - phù hợp cho mobile apps và batch logging.
+
+#### 2.3 Get Log Data
 **Command:** `log/get_data`
 
 Lấy tất cả dữ liệu log hiện có.
