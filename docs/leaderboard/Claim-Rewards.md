@@ -7,7 +7,6 @@ API này cho phép user claim (nhận) phần thưởng từ bảng xếp hạng
 ## Prerequisites
 
 - User phải đăng nhập thành công (authenticated)
-- WebSocket connection phải đang active
 - User phải có `has_reward = true` trong tuần trước
 - User chưa claim phần thưởng (`claimed_reward = false`)
 
