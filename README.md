@@ -15,11 +15,12 @@ Tài liệu API cho GM10 Server - Game backend sử dụng WebSocket cho real-ti
 
 ```
 docs/
-├── accounts/          # APIs quản lý tài khoản
-├── cheat/             # APIs cho testing (chỉ server test)
-├── leaderboard/       # APIs bảng xếp hạng
-├── log-analytic/      # APIs logging và analytics
-└── teams/             # APIs quản lý team
+├── accounts/             # APIs quản lý tài khoản
+├── cheat/                # APIs cho testing (chỉ server test)
+├── leaderboard/          # APIs bảng xếp hạng
+├── log-analytic/         # APIs logging và analytics
+├── request-collection/   # APIs yêu cầu xin vật phẩm collection
+└── teams/                # APIs quản lý team
 ```
 
 ## Danh sách APIs
@@ -80,6 +81,15 @@ docs/
 | [Send Log](docs/log-analytic/Send-Log.md) | `log/send` | Gửi log event (WebSocket) |
 | [Send Log Event HTTP](docs/log-analytic/Send-Log-Event-HTTP.md) | `POST /log` | Gửi log event (HTTP) |
 
+### 📦 Request Collection
+
+| API | Command | Mô tả |
+|-----|---------|-------|
+| [Send Request Collection](docs/request-collection/Send-Request-Collection.md) | `chat/send_request_collection` | Gửi yêu cầu xin vật phẩm collection |
+| [Get Time For Next Request](docs/request-collection/Get-Time-For-Next-Request.md) | `chat/helps/time_for_next_collection` | Thời gian cooldown trước khi gửi request mới |
+| [Get List Helpers](docs/request-collection/Get-List-Helpers.md) | `chat/helps/user_help_collections` | Lấy danh sách người đã giúp cho các request |
+| [Help Collection Request](docs/request-collection/Help-Collection-Request.md) | `chat/helps/help_collection_request` | Giúp một Collection Request |
+
 ### 🔧 Cheat (Testing Only)
 
 ⚠️ **Các API này chỉ hoạt động trên server test**
@@ -90,6 +100,7 @@ docs/
 | [Add Members](docs/cheat/Add-Members.md) | `cheat/add_members` | Thêm bot members vào team |
 | [Delete User Data](docs/cheat/Delete-User-Data.md) | `cheat/delete_user_data` | Xóa dữ liệu user |
 | [Reset Leaderboard](docs/cheat/Reset-Leaderboard.md) | `cheat/reset_leaderboard` | Reset BXH tuần |
+| [Reset Request Collection Cooldown](docs/cheat/Reset-Request-Collection-Cooldown.md) | `cheat/reset_request_collection_cooldown` | Reset cooldown Collection Request của user |
 
 ## WebSocket Protocol
 
