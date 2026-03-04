@@ -7,7 +7,7 @@ API HTTP này cho phép client devices gửi log events trực tiếp đến ser
 ## Endpoint
 
 **HTTP Method:** `POST`  
-**URL:** `/log/send-event`  
+**URL:** `{baseUrl}/log/send-event`  
 **Content-Type:** `application/json`
 
 ## Request
