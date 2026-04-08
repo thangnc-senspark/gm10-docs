@@ -27,6 +27,18 @@ Trang **Collections** là nơi admin quản lý toàn bộ dữ liệu sưu tậ
 - Mỗi season hiển thị: tên, khoảng ngày (Start – End) và tổng số ngày.
 - Nhấn vào một season để xem / chỉnh sửa chi tiết ở cột phải.
 
+### Season Fields
+
+| Trường               | Bắt buộc | Mô tả                                                                 |
+|----------------------|----------|-----------------------------------------------------------------------|
+| **Name**             | ✅        | Tên mùa chơi                                                          |
+| **Start Date**       | ✅        | Ngày bắt đầu mùa                                                      |
+| **End Date**         | ✅        | Ngày kết thúc mùa                                                     |
+| **Collections**      |          | Danh sách Collection Items được gán vào mùa                           |
+| **Season Rewards**   |          | Phần thưởng cuối mùa, lưu dạng JSON (ví dụ: `{"Ruby": 100, "Gold": 500}`) |
+
+> ⚠️ **Season Rewards** phải là JSON hợp lệ. Hệ thống sẽ báo lỗi nếu JSON không đúng định dạng khi lưu.
+
 > ⚠️ Thao tác **Delete** không thể hoàn tác. Xoá season không xoá các Collection Items — chúng vẫn tồn tại và có thể gán vào season khác.
 
 ## 3. Tab — Collection Items
