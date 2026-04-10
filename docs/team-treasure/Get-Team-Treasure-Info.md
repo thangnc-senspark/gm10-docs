@@ -11,6 +11,8 @@ Handler `GET_TEAM_TREASURE_INFO` cho phép người chơi lấy thông tin chi t
 ## Request Data
 
 ### Cấu trúc JSON
+
+**Không truyền `eventId`** (lấy sự kiện active/gần nhất của team):
 ```json
 {
   "rid": {
@@ -21,8 +23,22 @@ Handler `GET_TEAM_TREASURE_INFO` cho phép người chơi lấy thông tin chi t
 }
 ```
 
+**Truyền `eventId`** (lấy thông tin sự kiện cụ thể theo ID):
+```json
+{
+  "rid": {
+    "cmd": "team_treasure/info",
+    "rid": 1
+  },
+  "data": "{\"eventId\": 42}"
+}
+```
+
 ### Chi tiết các trường dữ liệu
-Handler này **không cần dữ liệu đầu vào**.
+
+| Trường | Kiểu | Bắt buộc | Mô tả |
+|--------|------|----------|-------|
+| `eventId` | Int | Không | ID sự kiện cụ thể cần lấy thông tin. Nếu bỏ qua hoặc `null`, server sẽ trả về sự kiện ACTIVE (hoặc ENDED gần nhất) của team người chơi. |
 
 ## Response Data
 
@@ -107,12 +123,12 @@ Handler này **không cần dữ liệu đầu vào**.
 | `stepRewards` | StepRewards | Cấu hình phần thưởng cho các step |
 | `topBonusRewards` | TopBonusRewards | Cấu hình phần thưởng cho top 1/2/3 |
 
-### Response khi không có sự kiện active
+### Response khi không có sự kiện active hoặc `eventId` không hợp lệ
 ```json
 {
   "rid": {
     "cmd": "team_treasure/info",
-    "rid": -1
+    "id": 1
   },
   "data": null,
   "errCode": 0,
@@ -146,12 +162,13 @@ Handler này **không cần dữ liệu đầu vào**.
 
 1. **Xác thực**: Handler yêu cầu người dùng phải đăng nhập hợp lệ
 2. **Team membership**: Người dùng phải là thành viên của một team
-3. **Sự kiện active**: Nếu team không có sự kiện active/ended nào, `data` sẽ trả về `null` nhưng `errCode` vẫn là `0` (success)
-4. **Leaderboard**: `topPlayers` chứa tất cả participants được sắp xếp theo số ship wheels kiếm được (giảm dần)
-5. **Step thresholds**: 
+3. **`eventId` tuỳ chọn**: Nếu không truyền (hoặc `null`), server trả về sự kiện ACTIVE của team; nếu không có sự kiện ACTIVE, server trả về sự kiện ENDED gần nhất. Nếu truyền `eventId`, server lấy trực tiếp sự kiện đó — hữu ích cho admin/debug hoặc xem lại kết quả sự kiện đã kết thúc.
+4. **Sự kiện không tồn tại**: Nếu `eventId` được truyền nhưng không tìm thấy sự kiện tương ứng (hoặc người chơi không tham gia sự kiện đó), `data` sẽ trả về `null` nhưng `errCode` vẫn là `0` (success)
+5. **Leaderboard**: `topPlayers` chứa tất cả participants được sắp xếp theo số ship wheels kiếm được (giảm dần)
+6. **Step thresholds**: 
    - Step 1: 60% of `totalShipWheels`
    - Step 2: 90% of `totalShipWheels`
    - Step 3: 180% of `totalShipWheels` (vượt mục tiêu)
-6. **Claimed flags**: Các flag `stepXClaimed` và `bonusClaimed` chỉ áp dụng cho người chơi hiện tại, không phải toàn team
-7. **Bonus reward**: Chỉ có thể claim sau khi sự kiện kết thúc (`status: ENDED`) và chỉ dành cho top 3 contributors
+7. **Claimed flags**: Các flag `stepXClaimed` và `bonusClaimed` chỉ áp dụng cho người chơi hiện tại, không phải toàn team
+8. **Bonus reward**: Chỉ có thể claim sau khi sự kiện kết thúc (`status: ENDED`) và chỉ dành cho top 3 contributors
 
